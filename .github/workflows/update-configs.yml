@@ -22,24 +22,21 @@ jobs:
         run: |
           python3 -c '
           import urllib.request
-          import socket
           import time
-
-          # Принудительно используем IPv4 для стабильности сети в GitHub Actions
-          old_getaddrinfo = socket.getaddrinfo
-          def new_getaddrinfo(*args, **kwargs):
-              responses = old_getaddrinfo(*args, **kwargs)
-              return [r for r in responses if r[0] == socket.AF_INET]
-          socket.getaddrinfo = new_getaddrinfo
+          import ssl
 
           url = "https://githubusercontent.com"
-          req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+          req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"})
+          
+          # Отключаем строгую проверку SSL на случай проблем с сертификатами в контейнере
+          ctx = ssl.create_default_context()
+          ctx.check_hostname = False
+          ctx.verify_mode = ssl.CERT_NONE
 
-          # Делаем до 5 попыток скачивания при сетевых сбоях
           for attempt in range(5):
               try:
                   print(f"Попытка скачивания {attempt + 1}...")
-                  with urllib.request.urlopen(req, timeout=15) as response:
+                  with urllib.request.urlopen(req, context=ctx, timeout=20) as response:
                       with open("vless_configs.txt", "wb") as f:
                           f.write(response.read())
                   print("Файл успешно скачан!")
