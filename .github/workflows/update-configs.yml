@@ -15,30 +15,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout target repository
-      uses: actions/checkout@v4
+      - name: Checkout target repository
+        uses: actions/checkout@v4
 
-    - name: Download VLESS configs
-      run: |
-        # Создаем папку vpn-configs в вашем проекте, если её нет
-        mkdir -p vpn-configs
-        
-        # Скачиваем стандартный обход черного списка
-        curl -L "https://githubusercontent.com" -o vpn-configs/vless-standard.txt
-        
-        # Скачиваем обход черного списка для мобильных сетей
-        curl -L "https://githubusercontent.com" -o vpn-configs/vless-mobile.txt
+      - name: Download VLESS configs
+        run: |
+          wget -O vless_configs.txt "https://githubusercontent.com"
 
-    - name: Commit and Push changes
-      run: |
-        git config --global user.name "github-actions[bot]"
-        git config --global user.email "41898282+github-actions[bot]@://github.com"
-        
-        # Проверяем, появились ли новые ключи в файлах
-        if git diff --exit-code vpn-configs/; then
-          echo "Новых ключей нет, файлы не изменились. Пропускаем коммит."
-        else
-          git add vpn-configs/
-          git commit -m "Автообновление ключей VLESS: $(date +'%Y-%m-%d %H:%M:%S UTC')"
-          git push
-        fi
+      - name: Commit and Push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add vless_configs.txt
+          if ! git diff --cached --quiet; then
+            git commit -m "Автоматическое обновление конфигураций VLESS (черный список)"
+            git push
+          else
+            echo "Изменений нет, пуш не требуется."
+          fi
