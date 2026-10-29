@@ -20,34 +20,7 @@ jobs:
 
       - name: Download VLESS configs
         run: |
-          python3 -c '
-          import urllib.request
-          import time
-          import ssl
-
-          url = "https://githubusercontent.com"
-          req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"})
-          
-          # Отключаем строгую проверку SSL на случай проблем с сертификатами в контейнере
-          ctx = ssl.create_default_context()
-          ctx.check_hostname = False
-          ctx.verify_mode = ssl.CERT_NONE
-
-          for attempt in range(5):
-              try:
-                  print(f"Попытка скачивания {attempt + 1}...")
-                  with urllib.request.urlopen(req, context=ctx, timeout=20) as response:
-                      with open("vless_configs.txt", "wb") as f:
-                          f.write(response.read())
-                  print("Файл успешно скачан!")
-                  break
-              except Exception as e:
-                  print(f"Ошибка при скачивании: {e}")
-                  if attempt < 4:
-                      time.sleep(3)
-                  else:
-                      raise e
-          '
+          curl -L -s -o vless_configs.txt "https://raw.githack.com/igareck/vpn-configs-for-russia/main/BLACK_VLESS_RUS_mobile.txt"
 
       - name: Commit and Push changes
         run: |
