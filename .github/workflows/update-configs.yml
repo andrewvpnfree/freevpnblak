@@ -25,7 +25,7 @@ jobs:
           import socket
           import time
 
-          # Принудительно используем IPv4 для стабильности сети
+          # Принудительно используем IPv4 для стабильности сети в GitHub Actions
           old_getaddrinfo = socket.getaddrinfo
           def new_getaddrinfo(*args, **kwargs):
               responses = old_getaddrinfo(*args, **kwargs)
