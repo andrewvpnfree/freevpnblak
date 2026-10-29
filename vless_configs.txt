@@ -2,7 +2,7 @@
 # profile-update-interval: 1
 # Date/Time: 2026-10-29 / 15:17 (Moscow)
 # Количество: 150
-# For more info and VPN-configs - visit: www.github.com/igareck/vpn-configs-for-russia
+# For more info and VPN-configs - visit: https://raw.githubusercontent.com/andrewvpnfree/freevpnblak/refs/heads/main/vless_configs.txt
 
 vless://d96afc0e-c57c-4030-83c2-5b4b0ccbaa89@146.75.35.80:443?encryption=none&host=cdn-turkey.global.ssl.fastly.net&security=tls&sni=accounts.fastly.com&type=xhttp&fp=android#.%F0%96%A5%94%20%DD%81%20%CB%96%D6%B4%F0%9F%9B%B8%E0%BC%84%CB%96%C2%B0.%20%7C%20%5BBL%5D
 vless://d96afc0e-c57c-4030-83c2-5b4b0ccbaa89@146.75.35.80:443?encryption=none&host=cdn-turkey.global.ssl.fastly.net&security=tls&sni=accounts.fastly.com&type=xhttp&fp=chrome#.%F0%96%A5%94%20%DD%81%20%CB%96%D6%B4%F0%9F%9B%B8%E0%BC%84%CB%96%C2%B0.%20%7C%20%5BBL%5D
