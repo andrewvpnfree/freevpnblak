@@ -20,7 +20,7 @@ jobs:
 
       - name: Download VLESS configs
         run: |
-          curl -L -s -o vless_configs.txt "https://raw.githack.com/igareck/vpn-configs-for-russia/main/BLACK_VLESS_RUS_mobile.txt"
+          curl -L -s -o vless_configs.txt "https://raw.githubusercontent.com/hiztin/VLESS-PO-GRIBI/main/deploy/subscriptions/1.txt"
 
       - name: Commit and Push changes
         run: |
