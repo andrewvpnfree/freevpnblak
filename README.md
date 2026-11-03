@@ -4,6 +4,8 @@
 
 новая подписка (https://raw.githubusercontent.com/andrewvpnfree/-/refs/heads/main/extracted_keys.txt)
 
+новая подписка 2 (https://raw.githubusercontent.com/andrewvpnfree/csob/refs/heads/main/extracted_keys.txt)
+
 обновляется каждые 5 часов
 
 улучшил впн 
